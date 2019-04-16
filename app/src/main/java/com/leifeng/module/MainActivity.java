@@ -22,7 +22,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-       /* RequestManner.ConvertBeanRequest(RetrofitFactory.getInstance().create(TestService.class).get(""), new OnRequestListener<List<TestArGoodsListDataBean>>(){
+        RequestManner.ConvertBeanRequest(RetrofitFactory.getInstance().create(TestService.class).get(""), new OnRequestListener<List<TestArGoodsListDataBean>>(){
             @Override
             protected void onSuccess(List<TestArGoodsListDataBean> bean) {
                 Log.e("=================", new Gson().toJson(bean));
@@ -34,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
             protected void onSuccess(RequestResultBean<List<TestArGoodsListDataBean>> bean) {
                 Log.e("=================", new Gson().toJson(bean));
             }
-        });*/
+        });
 
         RequestManner.Request(RetrofitFactory.getInstance().create(TestService.class).get1(""), new OnRequestListener<TestArGoodsListBean>() {
             @Override
