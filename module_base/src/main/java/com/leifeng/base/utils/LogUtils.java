@@ -5,13 +5,24 @@ import android.util.Log;
 public class LogUtils {
     public static final String TAG = LogUtils.class.getSimpleName();
     private static boolean isDebug = true;
+    private static int LOG_MAX_LENGTH = 2001;
 
     public static void v(String message) {
         v(TAG, message);
     }
 
     public static void v(String tag, String message) {
-        if (isDebug) Log.e(tag, message);
+        if (isDebug){
+            int maxStrLength = LOG_MAX_LENGTH - tag.length();
+            // 大于4000时
+            while (message.length() > maxStrLength) {
+                Log.v(tag, message.substring(0, maxStrLength));
+                message = message.substring(maxStrLength);
+            }
+            // 剩余部分
+            Log.v(tag, message);
+
+        }
     }
 
     public static void d(String message) {
@@ -19,15 +30,15 @@ public class LogUtils {
     }
 
     public static void d(String tag, String message) {
-        if (isDebug) Log.e(tag, message);
+        if (isDebug) Log.d(tag, message);
     }
 
     public static void i(String message) {
-        w(TAG, message);
+        i(TAG, message);
     }
 
     public static void i(String tag, String message) {
-        if (isDebug) Log.e(tag, message);
+        if (isDebug) Log.i(tag, message);
     }
 
     public static void w(String message) {
@@ -35,7 +46,7 @@ public class LogUtils {
     }
 
     public static void w(String tag, String message) {
-        if (isDebug) Log.e(tag, message);
+        if (isDebug) Log.w(tag, message);
     }
 
     public static void e(String message) {
@@ -46,11 +57,4 @@ public class LogUtils {
         if (isDebug) Log.e(tag, message);
     }
 
-    public static void a(String message) {
-        a(TAG, message);
-    }
-
-    public static void a(String tag, String message) {
-        if (isDebug) Log.e(tag, message);
-    }
 }

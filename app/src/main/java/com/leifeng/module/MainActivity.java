@@ -22,14 +22,14 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        RequestManner.ConvertBeanRequest(RetrofitFactory.getInstance().create(TestService.class).get(""), new OnRequestListener<List<TestArGoodsListDataBean>>(){
+        RequestManner.ConvertBeanRequest(RetrofitFactory.getInstance().create(TestService.class).get("123","123456"), new OnRequestListener<List<TestArGoodsListDataBean>>(){
             @Override
             protected void onSuccess(List<TestArGoodsListDataBean> bean) {
                 Log.e("=================", new Gson().toJson(bean));
             }
         });
 
-        RequestManner.ConvertDataRequest(RetrofitFactory.getInstance().create(TestService.class).get(""), new OnRequestListener<RequestResultBean<List<TestArGoodsListDataBean>>>() {
+        RequestManner.ConvertDataRequest(RetrofitFactory.getInstance().create(TestService.class).get("",""), new OnRequestListener<RequestResultBean<List<TestArGoodsListDataBean>>>() {
             @Override
             protected void onSuccess(RequestResultBean<List<TestArGoodsListDataBean>> bean) {
                 Log.e("=================", new Gson().toJson(bean));

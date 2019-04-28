@@ -13,7 +13,7 @@ public interface TestService {
 
     @FormUrlEncoded
     @POST("/Api/index2/getGoodsArTest")
-    Observable<RequestResultBean<List<TestArGoodsListDataBean>>> get(@Field("shop_id") String shop_id);
+    Observable<RequestResultBean<List<TestArGoodsListDataBean>>> get(@Field("shop_id") String shop_id,@Field("id") String id);
 
 
     @FormUrlEncoded

@@ -39,7 +39,7 @@ public class RetrofitFactory {
         OkHttpClient mOkHttpClient = new OkHttpClient.Builder()
                 .connectTimeout(CONNECT_TIME_OUT, SECONDS)
                 .callTimeout(CALL_TIME_OUT, SECONDS)
-//                .addInterceptor() // 添加拦截器
+                .addInterceptor(new LogInterceptor()) // 添加日志拦截器
                 .build();
         // 初始化Retrofit
         mRetrofit = new Retrofit.Builder()
