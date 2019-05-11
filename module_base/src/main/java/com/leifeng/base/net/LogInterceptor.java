@@ -14,6 +14,9 @@ import okhttp3.RequestBody;
 import okhttp3.Response;
 import okhttp3.ResponseBody;
 import okio.Buffer;
+import okio.BufferedSource;
+
+import static java.lang.Long.MAX_VALUE;
 
 public class LogInterceptor implements Interceptor {
     @Override
@@ -33,7 +36,12 @@ public class LogInterceptor implements Interceptor {
         LogUtils.i("请求地址：" + mHttpUrl.url().toString());
         Response response = chain.proceed(request);
         ResponseBody body = response.body();
-        LogUtils.i("请求返回数据：" + decodeUnicode(body.string()));
+        if (body != null && body.contentLength() != 0L){
+            BufferedSource source = body.source();
+            source.request(MAX_VALUE);
+            Buffer buffer = source.buffer();
+            LogUtils.i(String.format("请求返回数据：%s", decodeUnicode(buffer.clone().readString(Charset.forName("UTF-8")))));
+        }
         return response;
     }
 

@@ -20,12 +20,12 @@ public class ToastUtils {
     }
 
     public void showShortToast(String text){
-        if (TextUtils.isEmpty(text)) return;
+        if (TextUtils.isEmpty(text) || APPUtils.getContext() == null) return;
         Toast.makeText(APPUtils.getContext(),text,Toast.LENGTH_SHORT).show();
     }
 
     public void showLongToast(String text){
-        if (TextUtils.isEmpty(text)) return;
+        if (TextUtils.isEmpty(text) || APPUtils.getContext() == null) return;
         Toast.makeText(APPUtils.getContext(),text,Toast.LENGTH_LONG).show();
     }
 }
